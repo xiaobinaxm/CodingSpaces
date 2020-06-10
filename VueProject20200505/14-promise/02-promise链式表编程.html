@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<script>
+
+    const name = 'Robin';
+    console.log(name);
+    console.log('-----');
+    // 链式编程
+    // setTimeout(() => {
+    //     console.log('hello world');
+    //     console.log('hello world');
+    //     console.log('hello world');
+    //     console.log('hello world');
+    //     console.log('hello world');
+    //
+    //
+    //     setTimeout(() => {
+    //         console.log('hello vuejs....');
+    //         console.log('hello vuejs....');
+    //         console.log('hello vuejs....');
+    //         console.log('hello vuejs....');
+    //         console.log('hello vuejs....');
+    //
+    //
+    //         setTimeout(() => {
+    //             console.log('hello Python');
+    //             console.log('hello Python');
+    //             console.log('hello Python');
+    //             console.log('hello Python');
+    //             console.log('hello Python');
+    //         }, 1000);
+    //     }, 1000);
+    // }, 1000);
+    console.log('=================');
+
+
+    // new Promise((resolve, reject) => {
+    //     //第一次网络请求
+    //     setTimeout(() => {
+    //         resolve();
+    //     }, 1000)
+    // }).then(() => {
+    //     // 第一次拿到结果的处理代码
+    //     console.log('hello world');
+    //     console.log('hello world');
+    //     console.log('hello world');
+    //     console.log('hello world');
+    //     console.log('hello world');
+    //
+    //     return new Promise((resolve, reject) => {
+    //         // 第二次网络请求
+    //         setTimeout(() => {
+    //             resolve();
+    //         }, 1000)
+    //     })
+    // }).then(() => {
+    //     // 第二次拿到结果的处理代码
+    //     console.log('hello vuejs...');
+    //     console.log('hello vuejs...');
+    //     console.log('hello vuejs...');
+    //     console.log('hello vuejs...');
+    //     console.log('hello vuejs...');
+    //
+    //     return new Promise((resolve, reject) => {
+    //         // 第三次网络请求
+    //         setTimeout(() => {
+    //             resolve();
+    //         }, 1000)
+    //     })
+    // }).then(() => {
+    //     // 第三次请求结果的处理代码
+    //     console.log('hello Python.......');
+    //     console.log('hello Python.......');
+    //     console.log('hello Python.......');
+    //     console.log('hello Python.......');
+    //     console.log('hello Python.......');
+    // })
+
+
+
+    // 代码中有不同形式的简写  所有代码都是对的
+    new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve('robin');
+        },1000)
+    }).then((res)=>{
+        console.log(res, '第一次结果处理代码');
+
+        return new Promise(resolve => {
+            resolve(res+'2222');
+        })
+    }).then(res=>{
+        console.log(res, '第二次结果处理代码');
+
+        return Promise.resolve(res+'333')
+    }).then(res=>{
+        console.log(res + '第三次结果处理结果');
+
+        return res + '333';
+    }).then(res=>{
+        console.log(res + '第4次结果处理代码');
+
+        return Promise.reject('err=>{err}......')
+        // throw 'error message';
+    }).catch(err=>{
+        console.log(err);
+    })
+
+</script>
+</body>
+</html>

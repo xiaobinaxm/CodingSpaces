@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise的基本使用</title>
+</head>
+<body>
+
+
+<script>
+
+    const name = 'Robin';
+    console.log(name);
+
+    console.log('----------');
+
+    new Promise((resolve,reject) => {
+       setTimeout(()=>{
+           // 成功的时候调用resolve
+           resolve('hello world');
+
+           // 失败的时候调用reject
+           // reject('error message');
+       },1000)
+    }).then(data=>{
+        console.log(data);
+        console.log(data);
+        console.log(data);
+        console.log(data);
+    }).catch(err=>{
+        console.log(err);
+    })
+
+
+</script>
+</body>
+</html>

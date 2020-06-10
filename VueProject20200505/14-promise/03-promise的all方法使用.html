@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+
+    // 传递的是参数是数组
+    Promise.all([
+        // 真实情况可能发生的状况
+        // new Promise((resolve, reject) => {
+        //     $.ajax({
+        //         url: 'url1',
+        //         success: function (data) {
+        //             resolve(data);
+        //         }
+        //     });
+        // }),
+        // new Promise((resolve, reject) => {
+        //     $.ajax({
+        //         url: 'url2',
+        //         success: function (data) {
+        //             resolve(data);
+        //         }
+        //     });
+        // })
+        // 模拟上面情况   只有2个promise同时发生后，才会执行下面的results
+        new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve({name: 'Robin', age: 18})
+            },2000)
+        }),
+        new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('hahahahah');
+            },1000)
+        })
+    ]).then(results=>{
+        console.log(results);
+    })
+
+
+</script>
+</body>
+</html>
