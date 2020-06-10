@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>02-vue计数器</title>
+</head>
+<body>
+<div id="app">
+    <h2>计数器：{{count}}</h2>
+    <!--简单处理的话，不需要做额外处理，不需要写函数-->
+    <!--<button v-on:click="count++">+</button>-->
+    <!--<button v-on:click="count&#45;&#45;">-</button>-->
+
+    <button v-on:click="add">+</button>
+    <button @click="sub">-</button>
+</div>
+<span>
+    lorem5
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor.
+    lorem*3
+    lorem
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, veniam?</p>
+</span>
+
+<script src="../js/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            count: 0
+        },
+        methods: {
+            add: function () {
+                console.log('add被执行');
+                this.count++;
+            },
+            sub() {
+                console.log('sub被执行');
+                this.count--;
+            }
+        }
+    });
+</script>
+
+
+
+</body>
+</html>

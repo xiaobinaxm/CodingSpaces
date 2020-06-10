@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <h2>{{message}}</h2>
+    <button @click="btn1Click()">按钮1</button>
+    <button @click="btn2Click">按钮2</button><!-- 如果不写括号，会自动将浏览器的event事件传递过来，我们一般都会写小括号，并且在家一个event参数 -->
+    <button @click="btn2Click(123)">按钮2</button>
+    <!--在调用方法的时候，如何手动的获取浏览器参数的event对象，<可以使用0event>固定写法</可以使用0event>-->
+    <button @click="btn3Click(123,$event)">按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...'
+        },
+        methods: {
+            btn1Click() {
+                console.log('btn1Click');
+            },
+            btn2Click(event) {
+                console.log('------------>', event);
+            },
+            btn3Click(abc, event) {
+                console.log('+++++', abc, event);
+            }
+        }
+    });
+</script>
+</body>
+</html>

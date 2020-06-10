@@ -1,0 +1,13 @@
+package com.robin.sbweb01;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class Sbweb01ApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/fileupload" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/freemarker" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall/user-service-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbdemo01" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbexception" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbjson" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbpersistent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbrestful" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbsecurity-json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbsecurity01" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbsecurity02" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbsecurity03-dy" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbshiro01" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbshiro02" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbtest1" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbweb01" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbwebsocket01" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/staticresources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thymeleaf" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

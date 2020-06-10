@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>03-vue的template</title>
+</head>
+<body>
+<div id="app">
+    <h2>计数器：{{count}}</h2>
+    <!--简单处理的话，不需要做额外处理，不需要写函数-->
+    <!--<button v-on:click="count++">+</button>-->
+    <!--<button v-on:click="count&#45;&#45;">-</button>-->
+
+    <button v-on:click="add">+</button>
+    <button @click="sub">-</button>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+    //代理 proxy
+    let obj={
+        msg: 'objjjj',
+        count: 0
+    };
+
+    const vm = new Vue({
+        el: '#app',
+        data: obj,
+        methods: {
+            add: function () {
+                console.log('add被执行');
+                this.count++;
+            },
+            sub() {
+                console.log('sub被执行');
+                this.count--;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind基本使用</title>
+</head>
+<body>
+
+
+<div id="app">
+    <h2>{{message}}</h2>
+    <img src="{{imgURL}}" alt="图片">
+    <br>
+
+    <img v-bind:src="imgURL" alt="图片">
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            imgURL: 'https://img12.360buyimg.com/pop/s590x470_jfs/t1/116545/28/3884/93104/5eaa83d4E24655878/8926d5e34766e748.jpg.webp'
+        }
+    });
+</script>
+</body>
+</html>

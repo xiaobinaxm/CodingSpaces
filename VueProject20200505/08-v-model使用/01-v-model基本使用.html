@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="app">
+    <!--<h2>{{message}}</h2>-->
+    <!--<input type="text" v-model="message">-->
+    <!--{{message}}-->
+
+    <!--双向绑定的原理-->
+    <!--如果没有参数的时候，默认是不用写小括号的，传递进来的就是浏览器的动作事件event-->
+    <!--方法1-->
+    <!--<input type="text" :value="message" @input="valueChange">-->
+
+    <!--方法2,直接不用写方法，直接在@input里写动作事件-->
+    <input type="text" :value="message" @input="message = $event.target.value">
+    <h2>{{message}}</h2>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...'
+        },
+        methods:{
+            valueChange(event) {
+                this.message = $event.target.value;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <h2>{{message}}</h2>
+
+    <!--总结：-->
+    <!--单个就用：字符-->
+    <!--多个就用：数组-->
+
+    <!--选择一个时-->
+    <select name="abc" v-model="fruit">
+        <option value="苹果">苹果</option>
+        <option value="香蕉">香蕉</option>
+        <option value="榴莲">榴莲</option>
+        <option value="葡萄">葡萄</option>
+    </select>
+    <h2>你选择的水果是：{{fruit}}</h2>
+
+    <hr>
+    <br>
+    <!--选择多个时-->
+    <select name="a" v-model="fruits" multiple>
+        <option value="苹果">苹果</option>
+        <option value="香蕉">香蕉</option>
+        <option value="榴莲">榴莲</option>
+        <option value="葡萄">葡萄</option>
+    </select>
+    <h2>你选择的水果是：{{fruits}}</h2>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            fruit: '香蕉',
+            fruits: []
+        }
+    });
+</script>
+
+</body>
+</html>

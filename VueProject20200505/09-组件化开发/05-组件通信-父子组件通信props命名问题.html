@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <!--//不支持驼峰命名法，要消除波浪线，需要采用破折号命名法，进行显示-->
+    <!--//其实就是模板解析渲染显示问题-->
+    <cpn :c-info="info" :cnames="names"></cpn>
+</div>
+
+<template id="cpn">
+    <!--如果是一个标签，可以不用父标签div，如果存在2个标签，则需要父div-->
+    <!--其实就是需要一个根标签-->
+    <div>
+        <h2>{{cInfo}}</h2>
+        <p>{{cnames}}</p>
+
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    const cpn = {
+      template: '#cpn',
+      props: {
+          //以后父子组件传递数据，尽量采用对象的方式
+          cInfo: {
+              type: Object,
+              default() {
+                  return{
+
+                  }
+              }
+          },
+          cnames: {
+              type: Array,
+              default() {
+                  return [];
+              }
+          }
+      }
+    };
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            info: {
+                name: 'robin',
+                age: 18,
+                height: 1.88
+            },
+            names: ['Robin','Jack']
+        },
+        components: {
+            cpn
+        }
+    });
+</script>
+</body>
+</html>

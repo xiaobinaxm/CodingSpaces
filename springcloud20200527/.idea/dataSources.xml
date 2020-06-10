@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MySQL@localhost" uuid="956b0d07-9ab1-4d2c-a416-fdc3202c9133">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="GMT+8" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="MySQL8@localhost" uuid="1a780a1c-8bc6-4503-9b72-1021b6774b73">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3308</jdbc-url>
+      <driver-properties>
+        <property name="socketFactory" value="com.mysql.cserj.protocol.StandardSocketFactory" />
+        <property name="serverTimezone" value="GTM+8" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>

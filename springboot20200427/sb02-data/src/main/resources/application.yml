@@ -1,0 +1,64 @@
+#关闭Thymeleaf模板缓存
+spring:
+  thymeleaf:
+    cache: false
+
+#配置数据源Druid
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql:///test?useUnicode=true&characterEncoding=utf-8
+#    这个配置要不要都行
+#    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+#  #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+#  #druid数据源专有配置
+#  initialSize: 5
+#  minIdle: 5
+#  maxActive: 20
+#  maxWait: 60000
+#  timeBetweenEvictionRunsMillis: 60000
+#  minEvictableIdleTimeMillis: 300000
+#  validationQuery: SELECT 1 FROM DUAL
+#  testWhileIdle: true
+#  testOnBorrow: false
+#  testOnReturn: false
+#  poolPreparedstatements: true
+#
+#
+#  #配置监控统计拦截的filters.stat: 监控统计、log4j: 日志记录wall:防御sqL注入
+#  #如果允许时报错java.lang.ClassNotFoundException: org.apache.log4j.Priority
+#  #则导入Log4j 依赖即可。Maven 地址: https://mvnrepository.com/artifact/log4j/log4j
+#  filters: stat,wall,log4j
+#  maxPoolPreparedStatementPerConnectionSize: 20
+#  useGlobalDataSourceStat: true
+#  connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+#    initialSize: 5
+#    minIdle: 5
+#    maxActive: 20
+#    maxWait: 60000
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: SELECT 1 FROM DUAL
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+#    filters: stat,wall,log4j
+#    maxPoolPreparedStatementPerConnectionSize: 20
+#    useGlobalDataSourceStat: true
+#    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+#整合MyBatis  注意不同版本，配置文件有所不同，注意查看源码
+mybatis:
+#  Location of MyBatis xml config file mybatis配置文件位置
+#  configLocation: classpath:mybatis/mapper/*.xml
+  typeAliasesPackage: com.robin.pojo
+#  Locations of MyBatis mapper files   mybatis映射器文件位置
+  mapperLocations: classpath:mybatis/mapper/*.xml

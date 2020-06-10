@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--2.视图层-->
+<div id="app">
+    <ul>
+        <li v-for="item in uls">{{item}}</li>
+    </ul>
+    <br>
+    <!--<ul>-->
+        <!--<li v-for="item2 in uls2">{{item2}}</li>-->
+    <!--</ul>-->
+    <!--<ul>-->
+        <!--<li v-for="item3 in uls3">{{item3}}</li>-->
+    <!--</ul>-->
+</div>
+
+
+
+<!--1.引入vue.img-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--实际版本是：Vue.img v2.6.11-->
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello world",
+            uls: ['开心','快乐','美好','生活'],
+            uls2: ['qq','ww','ee','rr'],
+            uls3: ['qq3','ww3','ee3','rr3']
+        }
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<div id="result"></div>
+
+<input type="file" name="file" id="file">
+<input type="button" value="上传" onclick="uploadFile()">
+<script>
+    function uploadFile() {
+        var file = $("#file")[0].files[0];
+        var formData = new FormData();
+        // var formData1 = new FormData; 这2中方式都是可以的？？？
+        // 向formData放数据，不能连着放，注意与StringBuffer的区别
+        formData.append("file", file);
+
+        $.ajax({
+            type:'post',
+            url:'/fileUpload',
+            // 要不要把上传的数据处理为一个对象，默认是true，此处需要设置一下
+            processData:false,
+            // contentType就是设置请求头，此处避免上jquery设置请求头
+            contentType:false,
+            data:formData,
+            success:function (msg) {
+                $("#result").html(msg);
+            }
+        })
+    }
+
+/*
+    两种转换方式将一个jQuery对象转换成js对象：[index]和.get(index);
+    (1)jQuery对象是一个数据对象，可以通过[index]的方法，来得到相应的js对象。 
+    如：var $v =$("#v") ; //jQuery对象 
+    var v=$v[0]; //js对象 
+    alert(v.checked) //检测这个checkbox是否被选中 
+    (2)jQuery本身提供，通过.get(index)方法，得到相应的js对象
+    如：var $v=$("#v"); //jQuery对象 
+    var v=$v.get(0); //js对象 
+    alert(v.checked) //检测这个checkbox是否被选中
+
+    js对象转成jQuery对象:
+
+        对于已经是一个js对象，只需要用$()把DOM对象包装起来，就可以获得一个jQuery对象了。$(js对象)
+    如：var v=document.getElementById("v"); //js对象 
+    var $v=$(v); //jQuery对象 
+
+    转换后，就可以任意使用jQuery的方法了。
+   */
+</script>
+</body>
+</html>

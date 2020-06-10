@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>{{message}}</h2>
+
+    <!--1.修饰符lazy-->
+    <input type="text" v-model.lazy="message"></input>
+    <h3>{{message}}</h3>
+
+
+    <!--2.修饰符number-->
+    <input type="number" v-model.number="age"><br>
+    <input type="number">
+    <h2>{{age}}===={{typeof age}}</h2>
+
+    <!--3.修饰符trim-->
+    <input type="text" v-model.trim="name">
+    <h2>你输入的名字：{{name}}---{{typeof name}}</h2>
+
+    <br>
+    <hr>
+    <input id="num" type="number" min="1" oninput="javascript:this.value = this.value.replace(/[^\d]/g,'')"/>
+    <br>
+    <input type="number" step="0.5" min="0.5">
+    <br>
+    <!--一下2个有点问题-->
+    <!--<input text="number" step="1" min="0" onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''">-->
+    <!--<br>-->
+    <!--<input text="number" step="1" min="0" input="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''">-->
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let value = document.getElementById('num').value;
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            age: null,
+            age1: '',
+            name:''
+        }
+    });
+</script>
+</body>
+</html>

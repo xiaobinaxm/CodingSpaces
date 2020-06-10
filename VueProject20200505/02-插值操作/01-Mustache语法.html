@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-Mustache语法</title>
+</head>
+<body>
+
+
+<div id="app">
+    <!--Mastache语法可以进行简单的运算-->
+    <h1>{{message}}</h1>
+    <h2>{{message}},robin...</h2>
+    <h2>{{firstname + lastname}}</h2>
+    <h2>{{firstname + ' ' + lastname}}</h2>
+    <h2>{{firstname}} {{lastname}}</h2>
+    <h2>{{count++}}</h2>
+    <h2>{{count * 3}}</h2>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            firstname: 'kobe',
+            lastname: 'bryant',
+            count: 0
+        }
+    });
+</script>
+
+</body>
+</html>

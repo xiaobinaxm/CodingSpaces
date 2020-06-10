@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div id="app">
+    <div v-if="books.length">
+        <table>
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>书籍名称</th>
+                    <th>出版日期</th>
+                    <th>价格</th>
+                    <th>购买数量</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(book,index) in books" :key="index">
+                    <td>{{book.id}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.date}}</td>
+                    <!--<td>{{￥ price.toFixed(2)}}</td>这里不需要使用单引号，而方法却是需要单引号的-->
+                    <td>{{book.price | showPrice}}</td>
+                    <td>
+                        <button @click="decrement(index)" :disabled="book.count <= 1">-</button>
+                        {{book.count}}
+                        <button @click="increment(index)">+</button>
+                    </td>
+                    <td><button @click="deleteHandle(index)">移除</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>总价格：{{totalPrice | showPrice}}</h2>
+    </div>
+    <h2 v-else>购物车为空</h2>
+</div>
+
+
+<!--webstorm下暂时不能引入外部js，应该与我见的空工程有关吧-->
+<!--<script type="text/javascript" src="main.img"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            books: [
+                {
+                    id: 1,
+                    name: '《算法导论》',
+                    date: '2006-9',
+                    price: 85.00,
+                    count: 1
+                },
+                {
+                    id: 2,
+                    name: '《UNIX编程艺术》',
+                    date: '2006-2',
+                    price: 50.00,
+                    count: 1
+                },
+                {
+                    id: 3,
+                    name: "《编程珠玑》",
+                    date: "2006-10",
+                    price: 100.00,
+                    count: 1
+                },
+                {
+                    id: 4,
+                    name: "《代码大全》",
+                    date: "2016-10",
+                    price: 128.00,
+                    count: 1
+                }
+            ]
+        },
+        methods: {
+            decrement(index) {
+                this.books[index].count--;
+            },
+            increment(index) {
+                this.books[index].count++;
+            },
+            deleteHandle(index) {
+                this.books.splice(index, 1);
+            }
+            // getFinalPrice(price) {
+            //     return ￥ + price.toFixed(2);
+            // }
+        },
+        computed:{
+            totalPrice() {
+                // 1.ES5
+                // let totalPrice = 0;
+                // for (let i = 0; i < this.books.length; i++) {
+                //     totalPrice += this.books[i].price * this.books[i].count;
+                // }
+                // return totalPrice;
+
+                //ES6
+                // for(let i in/of this.books)
+                //use in
+                // let totalPrice = 0;
+                // for (let i in this.books) {
+                //     totalPrice += this.books[i].price * this.books[i].count;
+                // }
+                // return totalPrice;
+
+                //use of
+               // let totalPrice = 0;
+               //  for (let item of this.books) {
+               //      totalPrice += item.price * item.count;
+               //  }
+               //  return totalPrice;
+
+                //reduce高阶函数filter map reduce
+                //preValue默认值是0
+                return this.books.reduce((preValue, book) => preValue + book.price * book.count, 0);
+            }
+        },
+        filters:{
+            showPrice(price) {
+                return '￥' + price.toFixed(2);
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

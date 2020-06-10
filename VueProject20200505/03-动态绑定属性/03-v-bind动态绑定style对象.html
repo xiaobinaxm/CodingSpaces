@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <h2>{{message}}</h2>
+<!--<h2 :style="{key(属性名):value(属性值)}"></h2>-->
+    <!--动态绑定style-->
+<!--<h2 :style="{font-size:50px}"></h2>这样写会把50px当做一个变量，到data中查找，需加单引号-->
+    <h2 :style="{'font-size': '50px'}">{{message}}</h2>
+    <br>
+    <h2 :style="{'font-size': finalSize,color: finalColor}">{{message}}</h2>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            finalSize: '100px',
+            finalColor: 'red'
+        }
+    });
+</script>
+
+</body>
+</html>

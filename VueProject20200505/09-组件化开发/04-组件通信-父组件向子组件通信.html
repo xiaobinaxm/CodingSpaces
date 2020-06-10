@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn :cmovies="movies" :cmessage="message"  ></cpn>
+
+    <br>
+    <hr>
+    {{movies}}
+</div>
+
+
+<template id="cpn">
+    <!--Component template should contain exactly one root element-->
+    <!--使用模板的时候，一定要在外城套个div标签，就是必须有跟标签，任何标签都可以-->
+    <div>
+        <!--//直接接收一个数组，这边没法解析，低版本的可以，奇葩-->
+        <!--如果这里改写成对象，并且有返回值[]，这不报错-->
+        <h2>{{cmessage}}</h2>
+        <hr>
+        <hr>
+        <p>{{cmovies}}</p>
+        <hr>
+        <hr>
+        <ul>
+            <li v-for="(item, index) in cmovies" :key="index">{{item}}</li>
+        </ul>
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    //const cpn = Vue.component('');
+    //父组件传递子组件使用：props
+    const cpn = {
+        template: "#cpn",
+        // props: ['cmovies','cmessage'],//数组写法
+        props: {
+            cmovies: {
+                type: Array,
+                default() {
+                    return [];
+                }
+            },
+            cmessage:{
+                type: String,
+                default: ''
+            }
+        },
+        data() {
+            return{
+
+            }
+        },
+        methods: {
+
+        }
+    };
+
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            movies: ['一人之下','秦时明月','斗罗大陆','斗破苍穹']
+        },
+        components: {//局部组件注册方法
+            //下面的是字面量增强写法
+            // 'cpn': cpn
+            cpn
+        }
+    });
+</script>
+</body>
+</html>

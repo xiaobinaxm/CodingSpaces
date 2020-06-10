@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>{{message}}</h2>
+    <span v-if="isUser">
+        <!--for对应着id，当点击用户名的时候，input框会处于聚焦状态-->
+        <label for="username">用户名</label>
+        <input type="text" id="username" placeholder="用户名" key="username">
+    </span>
+    <span v-else>
+        <label for="email">用户邮箱</label>
+        <input type="email" id="email" placeholder="用户邮箱" key="email">
+    </span>
+    <button @click="isUser = !isUser">切换按钮</button>
+<!--
+以上有个小问题，就是我们在切换的时候，会将之前的内容，切换到下一页，所以，
+    解决办法就是，我们设置不同的input，不同的key值即可，类似于我们的document.querySelect('input').value=''
+-->
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            isUser: true
+        }
+    });
+</script>
+</body>
+</html>

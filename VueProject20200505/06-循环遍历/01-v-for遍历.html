@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>{{message}}</h2>
+
+    <!--遍历的过程中没有使用下标值-->
+    <ul>
+        <li v-for="item in names">{{item}}</li>
+    </ul>
+    <button @click="btnClick">按钮</button>
+    <hr>
+    <!--遍历过程中使用下标值-->
+    <ul>
+        <li v-for="(item,index) in names">{{index+1}} ----- {{item}}</li>
+    </ul>
+
+    <hr>
+    <!--遍历一个对象-->
+    <!--遍历对象，如果只取一个值，获取 的就value-->
+    <ul>
+        <li v-for="item in info">{{item}}</li>
+    </ul>
+
+    <!--获取key和value值,以及我们的index-->
+    <ul>
+        <li v-for="(item,key,index) in info">{{index}}---{{key}}---{{item}}</li>
+    </ul>
+
+
+    <!--执行插入，需要使用 :key  类似于链表操作，执行效率比较高
+        这个仅适用于数组，不适用于对象
+    -->
+    <ul>
+        <li v-for="(item,index) in names" :key="item">{{index}}---{{item}}</li>
+    </ul>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...',
+            names: ['hello','hrr','robin','petty'],
+            info: {
+                name:'robin',
+                age: 18,
+                height: 1.88
+            },
+            methods:{
+                btnClick() {
+                    // this.names.unshift('aaa', 'bbbb');
+                    // this.names.splice();
+                    //这个不是响应式的，需要使用Vue自带的方法，才是响应式的，建议使用下面2个
+                    // this.names[0] = 'dddd';
+                    // this.names.splice(0, 1, 'bbbbb');
+                    Vue.set(this.names,0,'dddd')
+                }
+            }
+        }
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+resource目录下用来存放静态资源，
+SpringBoot项目是不用创建Webapp目录的
+以后所有的静态资源，都放在resource目录下

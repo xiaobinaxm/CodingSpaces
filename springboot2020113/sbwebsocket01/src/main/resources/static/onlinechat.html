@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--点对点的进行单聊，一对一-->
+    <title>单聊</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+</head>
+<body>
+
+<input type="button" id="connect" value="连接"></td>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" id="disconnect" disabled="disabled" value="断开连接"><br>
+消息内容：<input type="text" id="content"><br>
+目标用户：<input type="text" id="to"><br>
+<input type="button" id="send" value="发送">
+<div id="conversation"></div>
+
+<script>
+    $(function () {
+        $("#connect").click(function () {
+            connect();
+        })
+        $("#disconnect").click(function () {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+            setConnected(false);
+        })
+        $("#send").click(function () {
+            stompClient.send('/app/chat',{},JSON.stringify({
+                'to':$("#to").val(),'content':$("#content").val()   //信息发出去，发给谁，目标用户
+            }))
+        })
+    })
+
+    var stompClient = null;
+    function connect() {
+        var sockJS = new SockJS("/chat");
+        stompClient = Stomp.over(sockJS);
+        stompClient.connect({},function (success) {
+            setConnected(true);
+            stompClient.subscribe("/user/queue/chat",function (msg) {
+                showGreetings(JSON.parse(msg.body));
+            })
+        })
+    }
+
+    //展示的从哪来的消息
+    function showGreetings(msg) {
+        $("#conversation").append('<div>'+msg.from+':' +msg.content+'</div>');
+    }
+
+     function setConnected(flag) {
+         $("#connect").prop("disabled", flag);
+         $("#disconnect").prop("disabled", !flag);
+         if (flag) {
+             $("#chat").show();
+         } else {
+             $("#chat").hide();
+         }
+     }
+</script>
+</body>
+</html>
+
+<!--
+以下是采用快捷方式实现的，自己可以尝试下，核心就标签的选择器：类、id、属性、标签、子代、后代、相邻  配合Tab键使用
+<div id="1">
+    <div id="2">
+        <div id="3"></div>
+    </div>
+</div>
+
+<div class="11">
+    <div id="4"></div>
+    <div id="5"></div>
+    <div id="6"></div>
+</div>
+
+
+<tr class="7">
+<tr class="8">
+<tr class="9">
+    <td class="12"></td>
+    <td class="13"></td>
+    <td class="14"></td>
+    <td class="15"></td>
+</tr></tr></tr>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<div ttt="1"></div>
+-->
+<div id="test" style="display: none">
+    <input type="text" id="t1" style="color: #80251c;font-size: 20px">
+</div>

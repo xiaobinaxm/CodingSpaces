@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <div>
+        <h2>{{message}}</h2>
+
+        <cpn></cpn>
+        <cpn>
+            <!--v-slot这个语法必须使用在template中-->
+            <!--注意 v-slot 只能添加在 <template> 上-->
+            <template v-slot="slotProps"><!-- slot-scope="slotProps" -->
+                <span v-for="item in slotProps.data">{{item}}---</span>
+            </template>
+        </cpn>
+
+        <!--Vue创建时函数，join-->
+        <cpn>
+            <template v-slot="slotProps"><!-- slot-scope="slotProps" -->
+                <span>{{slotProps.data.join(' --- ')}}</span>
+            </template>
+        </cpn>
+
+        <!--v-slot简写 #，但是需要有参数时，才可以，目前不建议这么写，反而麻烦-->
+        <cpn>
+            <template #default="slotProps"><!-- slot-scope="slotProps" -->
+                <span>{{slotProps.data.join(' *** ')}}</span>
+            </template>
+        </cpn>
+
+    </div>
+</div>
+
+
+<template id="cpn">
+    <div>
+        <slot :data="planguage"><!-- 将数据以属性值得形式传递给父组件 -->
+            <ul>
+                <li v-for="item in planguage">{{item}}</li>
+            </ul>
+        </slot>
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue...'
+        },
+        components:{
+            cpn:{
+                template: '#cpn',
+                data(){
+                    return{
+                        planguage: ['Java','JavaScript','Go','Python','C','C#','C++','Swift']
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

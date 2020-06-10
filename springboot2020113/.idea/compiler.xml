@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="appbank" target="1.8" />
+      <module name="examtest" target="1.8" />
+      <module name="fileupload" target="1.8" />
+      <module name="freemarker" target="1.8" />
+      <module name="gmall" target="1.8" />
+      <module name="javassm" target="1.8" />
+      <module name="sbdemo01" target="1.8" />
+      <module name="sbexception" target="1.8" />
+      <module name="sbjson" target="1.8" />
+      <module name="sbpersistent" target="1.8" />
+      <module name="sbrestful" target="1.8" />
+      <module name="sbsecurity-json" target="1.8" />
+      <module name="sbsecurity-oauth2" target="1.8" />
+      <module name="sbsecurity01" target="1.8" />
+      <module name="sbsecurity02" target="1.8" />
+      <module name="sbsecurity03-dy" target="1.8" />
+      <module name="sbshiro01" target="1.8" />
+      <module name="sbshiro02" target="1.8" />
+      <module name="sbtest1" target="1.8" />
+      <module name="sbweb01" target="1.8" />
+      <module name="sbwebsocket01" target="1.8" />
+      <module name="springboot-jsp" target="1.8" />
+      <module name="staticresources" target="1.8" />
+      <module name="thymeleaf" target="1.8" />
+      <module name="userserviceprovider" target="1.8" />
+      <module name="xmlssm" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="fileupload" options="-parameters" />
+      <module name="freemarker" options="-parameters" />
+      <module name="gmall" options="-parameters" />
+      <module name="sbdemo01" options="-parameters" />
+      <module name="sbexception" options="-parameters" />
+      <module name="sbjson" options="-parameters" />
+      <module name="sbpersistent" options="-parameters" />
+      <module name="sbrestful" options="-parameters" />
+      <module name="sbsecurity-json" options="-parameters" />
+      <module name="sbsecurity-oauth2" options="-parameters" />
+      <module name="sbsecurity01" options="-parameters" />
+      <module name="sbsecurity03-dy" options="-parameters" />
+      <module name="sbshiro01" options="-parameters" />
+      <module name="sbshiro02" options="-parameters" />
+      <module name="sbtest1" options="-parameters" />
+      <module name="sbweb01" options="-parameters" />
+      <module name="sbwebsocket01" options="-parameters" />
+      <module name="springboot-jsp" options="-parameters" />
+      <module name="staticresources" options="-parameters" />
+      <module name="thymeleaf" options="-parameters" />
+      <module name="userserviceprovider" options="-parameters" />
+    </option>
+  </component>
+</project>

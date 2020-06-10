@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+
+    &lt;!&ndash;  shiro核心组件  &ndash;&gt;
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        &lt;!&ndash;<property name="cacheManager" ref="cacheManager"/>&ndash;&gt;
+        &lt;!&ndash;<property name="sessionMode" value="native"/>&ndash;&gt;
+        <property name="realm" ref="secondRealm"/>
+      &lt;!&ndash;  <property name="realms">
+            <list>
+                <ref bean="secondRealm"></ref>
+            </list>
+        </property>&ndash;&gt;
+        &lt;!&ndash;<property name="rememberMeManager.cookie.maxAge" value="10"></property>&ndash;&gt;
+    </bean>
+    <bean name="secondRealm" class="com.robin.realms.ShiroRealm">
+
+    </bean>
+
+    &lt;!&ndash;配置缓存&ndash;&gt;
+    &lt;!&ndash;<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">&ndash;&gt;
+        &lt;!&ndash;<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>&ndash;&gt;
+    &lt;!&ndash;</bean>&ndash;&gt;
+
+
+    &lt;!&ndash; 可以自动配置spring容器中shiro bean的生命周期方法  &ndash;&gt;
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    &lt;!&ndash;启动IOC容器中的shiro注解，但是必须在配置了lifecycleBeanPostProcessor后，才可以启用&ndash;&gt;
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+    </bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    &lt;!&ndash; 配置shiroFilter，默认id要和web.xml中配置shiroFilter的name保持一致 &ndash;&gt;
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        &lt;!&ndash; 引入securityManager &ndash;&gt;
+        <property name="securityManager" ref="securityManager"/>
+        &lt;!&ndash; shiro判断到没有登陆后跳转的地址 &ndash;&gt;
+        <property name="loginUrl" value="/login.jsp"/>
+        &lt;!&ndash; 登录成功后跳转的地址  &ndash;&gt;
+        <property name="successUrl" value="/list.jsp"/>
+        &lt;!&ndash; 没有权限跳转的地址 &ndash;&gt;
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        &lt;!&ndash; 过滤器 &ndash;&gt;
+        <property name="filterChainDefinitions">
+            <value>
+                /login.jsp = anon
+                /shiro/login=anon
+                /** = authc
+            </value>
+        </property>
+    </bean>
+
+-->
+
+
+
+
+<!--初级版核心流程-->
+    <!--  shiro核心组件  -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="sessionMode" value="native"/>
+        <property name="realm" ref="shiroRealm"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+    <bean id="shiroRealm" class="com.robin.realms.ShiroRealm">
+        <!--从前端传过来的数据，先执行加密-->
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <!--加密算法-->
+                <property name="hashAlgorithmName" value="MD5"/>
+                <!--加密次数-->
+                <property name="hashIterations" value="1024"/>
+            </bean>
+        </property>
+
+        <!-- 启用缓存，默认false； -->
+        <property name="cachingEnabled" value="true" />
+        <!--启用身份验证缓存，即缓存AuthenticationInfo信息，默认false -->
+        <property name="authenticationCachingEnabled" value="true" />
+        <!--缓存AuthenticationInfo信息的缓存名称 -->
+        <property name="authenticationCacheName" value="authenticationCache" />
+        <!--启用授权缓存，即缓存AuthorizationInfo信息，默认false -->
+        <property name="authorizationCachingEnabled" value="true" />
+        <!--缓存AuthorizationInfo信息的缓存名称 -->
+        <property name="authorizationCacheName" value="authorizationCache" />
+    </bean>
+
+    <!--会话cookie模板-->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <!--设置js是否可以访问cookie，true不能访问-->
+        <property name="httpOnly" value="true"/>
+        <!--保存时长，最长为30天，以秒为单位-->
+        <property name="maxAge" value="259200"/>
+    </bean>
+    <!--rememberMe管理器-->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!--cipherKey是加密rememberMe Cooki的秘钥；默认AES算法-->
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <!--引用上面定义的Cookie模板-->
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+    </bean>
+
+    <!-- 可以自动配置spring容器中shiro bean的生命周期方法  -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <!-- 配置shiroFilter，默认id要和web.xml中配置shiroFilter的name保持一致 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 引入securityManager -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- shiro判断到没有登陆后跳转的地址 -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 登录成功后跳转的地址  -->
+        <property name="successUrl" value="/list.jsp"/>
+        <!-- 没有权限跳转的地址 -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!-- 过滤器
+            1.auhtc：必须认证通过才能调用
+            2.anno：匿名过滤，没有认证也可以调用
+            3.user: 认证成功或者通过记住我登陆都可以访问
+
+         -->
+        <property name="filterChainDefinitions">
+            <value>
+                /logout = logout
+                /login = anon
+                /shiro/login = anon
+                /shiro/login2 = anon
+                /admin = roles[admin]
+                /user = roles[user]
+                /user = perms[user:user]
+                <!--/** = authc-->
+                /** = user
+            </value>
+        </property>
+    </bean>
+
+</beans>
