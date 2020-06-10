@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="c3p0-0.9.1.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../java-project01/lib/c3p0-0.9.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../java-project01/lib/commons-dbcp-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../java-project01/lib/commons-dbutils-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../java-project01/lib/commons-pool-1.5.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../java-project01/lib/druid-1.1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../java-project01/lib/mysql-connector-java-5.1.37-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../java-project01/lib/ojdbc6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
